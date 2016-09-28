@@ -34,7 +34,7 @@ public class App extends UnicastRemoteObject implements Observer {
 		 */
 
 		System.setProperty("java.security.policy",
-				"file:///home/david/Documentos/AP/DDA/RmiPrueba/PruebaRMI/java.policy");
+				"file:////java.policy");
 		final App app = this;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

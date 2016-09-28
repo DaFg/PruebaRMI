@@ -21,8 +21,7 @@ public class App {
 			 * System.setProperty("java.security.policy", "file:///"+path);
 			 */
 
-			System.setProperty("java.security.policy",
-					"file:///home/david/Documentos/AP/DDA/RmiPrueba/PruebaRMI/java.policy");
+			System.setProperty("java.security.policy", "file:////java.policy");
 			LocateRegistry.createRegistry(1099);
 			ServerImpl obj = new ServerImpl();
 			Server stub = (Server) UnicastRemoteObject.exportObject(obj, 0);
