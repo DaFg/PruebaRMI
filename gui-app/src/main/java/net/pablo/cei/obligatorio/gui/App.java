@@ -15,14 +15,26 @@ import net.pablo.cei.obligatorio.common.Server;
  *
  */
 public class App extends UnicastRemoteObject implements Observer {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Server server;
 	private MainWindows window;
 
 	public App() throws RemoteException, NotBoundException {
 		System.out.println(System.currentTimeMillis());
-		String path = "C:\\Users\\Pablo\\Documents\\java.policy.txt";
-		path = path.replace("\\", "/");
-		System.setProperty("java.security.policy", "file:///" + path);
+
+		/*
+		 * Estas lineas son la ruta para los equipos con windows.
+		 *
+		 * String path = "C:\\Users\\Pablo\\Documents\\java.policy.txt"; path =
+		 * path.replace("\\", "/"); System.setProperty("java.security.policy",
+		 * "file:///"+path);
+		 */
+
+		System.setProperty("java.security.policy",
+				"file:///home/david/Documentos/AP/DDA/RmiPrueba/PruebaRMI/java.policy");
 		final App app = this;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {

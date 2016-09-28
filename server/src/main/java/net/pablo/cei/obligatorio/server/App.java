@@ -10,27 +10,32 @@ import net.pablo.cei.obligatorio.common.Server;
  * Hello world!
  *
  */
-public class App 
-{
-    public static void main( String[] args )
-    {
-    	try {
-    		String path = "C:\\Users\\Pablo\\Documents\\java.policy.txt";
-    		path = path.replace("\\", "/");
-		System.setProperty("java.security.policy", "file:///"+path);
-		LocateRegistry.createRegistry(1099);
-		ServerImpl obj = new ServerImpl();
-		Server stub = (Server) UnicastRemoteObject.exportObject(obj, 0);
-		// Bind the remote object's stub in the registry
-		Registry registry = LocateRegistry.getRegistry(1099);
-		registry.bind("server", stub);
+public class App {
+	public static void main(String[] args) {
+		try {
+			/*
+			 * Estas lineas son la ruta para los equipos con windows.
+			 *
+			 * String path = "C:\\Users\\Pablo\\Documents\\java.policy.txt";
+			 * path = path.replace("\\", "/");
+			 * System.setProperty("java.security.policy", "file:///"+path);
+			 */
 
-		System.out.println("Server ready");
-		
-	} catch (Exception e) {
-		System.err.println("Server exception: " + e.toString());
-		e.printStackTrace();
+			System.setProperty("java.security.policy",
+					"file:///home/david/Documentos/AP/DDA/RmiPrueba/PruebaRMI/java.policy");
+			LocateRegistry.createRegistry(1099);
+			ServerImpl obj = new ServerImpl();
+			Server stub = (Server) UnicastRemoteObject.exportObject(obj, 0);
+			// Bind the remote object's stub in the registry
+			Registry registry = LocateRegistry.getRegistry(1099);
+			registry.bind("server", stub);
+
+			System.out.println("Server ready");
+
+		} catch (Exception e) {
+			System.err.println("Server exception: " + e.toString());
+			e.printStackTrace();
+		}
+
 	}
-    	
-    }
 }
