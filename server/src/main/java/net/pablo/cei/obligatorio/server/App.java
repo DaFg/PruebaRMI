@@ -13,15 +13,16 @@ import net.pablo.cei.obligatorio.common.Server;
 public class App {
 	public static void main(String[] args) {
 		try {
-			/*
-			 * Estas lineas son la ruta para los equipos con windows.
-			 *
-			 * String path = "C:\\Users\\Pablo\\Documents\\java.policy.txt";
-			 * path = path.replace("\\", "/");
-			 * System.setProperty("java.security.policy", "file:///"+path);
-			 */
+			
+			//Estas lineas son la ruta para los equipos con windows.
+			
+			String path = "C:\\java.policy";
+			path = path.replace("\\", "/");
 
-			System.setProperty("java.security.policy", "file:////java.policy");
+			System.setProperty("java.security.policy", "file://c:/java.policy");
+			System.setSecurityManager(new SecurityManager());
+
+			//System.setProperty("java.security.policy", "file:////java.policy");
 			LocateRegistry.createRegistry(1099);
 			ServerImpl obj = new ServerImpl();
 			Server stub = (Server) UnicastRemoteObject.exportObject(obj, 0);
@@ -34,6 +35,7 @@ public class App {
 		} catch (Exception e) {
 			System.err.println("Server exception: " + e.toString());
 			e.printStackTrace();
+			System.exit(1);
 		}
 
 	}
