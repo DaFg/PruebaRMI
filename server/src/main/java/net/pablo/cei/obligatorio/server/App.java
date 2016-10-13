@@ -22,8 +22,14 @@ public class App {
 
 			// Estas lineas son la ruta para los equipos con windows.
 
+<<<<<<< HEAD
 			String path = "C:\\java.policy";
 			path = path.replace("\\", "/");
+=======
+			/*
+			 * String path = "C:\\java.policy"; path = path.replace("\\", "/");
+			 */
+>>>>>>> origin/master
 
 			System.setProperty("java.security.policy", "file://c:/java.policy");
 			System.setSecurityManager(new SecurityManager());
