@@ -22,38 +22,32 @@ public class App {
 
 			// Estas lineas son la ruta para los equipos con windows.
 
-<<<<<<< HEAD
 			String path = "C:\\java.policy";
 			path = path.replace("\\", "/");
-=======
-			/*
-			 * String path = "C:\\java.policy"; path = path.replace("\\", "/");
-			 */
->>>>>>> origin/master
 
-			System.setProperty("java.security.policy", "file://c:/java.policy");
-			System.setSecurityManager(new SecurityManager());
+			// System.setProperty("java.security.policy", "file://c:/java.policy");
+			// System.setSecurityManager(new SecurityManager());
 
 			// System.setProperty("java.security.policy",
 			// "file:////java.policy");
-			LocateRegistry.createRegistry(1099);
-			ServerImpl obj = new ServerImpl();
-			Server stub = (Server) UnicastRemoteObject.exportObject(obj, 0);
+			// LocateRegistry.createRegistry(1099);
+			// ServerImpl obj = new ServerImpl();
+			// Server stub = (Server) UnicastRemoteObject.exportObject(obj, 0);
 			// Bind the remote object's stub in the registry
-			Registry registry = LocateRegistry.getRegistry(1099);
-			registry.bind("server", stub);
-			//JDBC
+			// Registry registry = LocateRegistry.getRegistry(1099);
+			// registry.bind("server", stub);
+			// JDBC
 			System.out.println("Server ready");
-			new Memento();
-			
-			//JPA
+			// new Memento();
+
+			// JPA todo mal
 			EntityManagerFactory emf;
-			emf=Persistence.createEntityManagerFactory("jpaDS");
-			EntityManager em=(EntityManager) emf.createEntityManager();
-			
+			emf = Persistence.createEntityManagerFactory("jpaDS");
+			EntityManager em = (EntityManager) emf.createEntityManager();
+
 			em.getTransaction().begin();
-			User user= new User();
-			Address address= new Address("la direccion");
+			User user = new User();
+			Address address = new Address("la direccion");
 			em.persist(address);
 			em.persist(user);
 			user.setAddress(address);

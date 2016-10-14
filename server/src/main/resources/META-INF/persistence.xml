@@ -5,8 +5,8 @@
 	version="1.0">
 	<persistence-unit name="jpaDS">
 		<class>net.pablo.cei.obligatorio.server.entities.User</class>
+		<class>net.pablo.cei.obligatorio.server.entities.Car</class>
 		<class>net.pablo.cei.obligatorio.server.entities.Address</class>
-
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dda-jpa" />
