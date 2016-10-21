@@ -14,13 +14,16 @@ public class ServerImpl implements Server {
 	@SuppressWarnings("deprecation")
 	public ServerImpl() {
 
-		
-		 String path = "C:\\Users\\Pablo\\Documents\\java.policy.txt"; path =
-				 path.replace("\\", "/");
-		 System.setProperty("java.security.policy","file:///"+path);
-		 
-		/*System.setProperty("java.security.policy",
-				"file:///home/david/Documentos/AP/DDA/RmiPrueba/PruebaRMI/java.policy");*/
+		String path = "C:\\Users\\Pablo\\Documents\\java.policy.txt";
+		path = path.replace("\\", "/");
+		System.setProperty("java.security.policy", "file:///" + path);
+
+		/*
+		 * System.setProperty("java.security.policy",
+		 * "file:///home/david/Documentos/AP/DDA/RmiPrueba/PruebaRMI/java.policy"
+		 * );
+		 */
+
 		if (System.getSecurityManager() == null) {
 			System.setSecurityManager(new RMISecurityManager());
 		}

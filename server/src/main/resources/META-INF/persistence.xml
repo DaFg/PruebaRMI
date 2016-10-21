@@ -9,9 +9,9 @@
 		<class>net.pablo.cei.obligatorio.server.entities.Address</class>
 		<exclude-unlisted-classes>false</exclude-unlisted-classes>
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/dda-jpa" />
-			<property name="javax.persistence.jdbc.user" value="postgres" />
-			<property name="javax.persistence.jdbc.password" value="admin" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/monopolio" />
+			<property name="javax.persistence.jdbc.user" value="monopolio" />
+			<property name="javax.persistence.jdbc.password" value="monopolio" />
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="create-drop" />

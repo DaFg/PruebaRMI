@@ -25,7 +25,8 @@ public class App {
 			String path = "C:\\java.policy";
 			path = path.replace("\\", "/");
 
-			// System.setProperty("java.security.policy", "file://c:/java.policy");
+			// System.setProperty("java.security.policy",
+			// "file://c:/java.policy");
 			// System.setSecurityManager(new SecurityManager());
 
 			// System.setProperty("java.security.policy",
@@ -36,6 +37,7 @@ public class App {
 			// Bind the remote object's stub in the registry
 			// Registry registry = LocateRegistry.getRegistry(1099);
 			// registry.bind("server", stub);
+
 			// JDBC
 			System.out.println("Server ready");
 			// new Memento();
