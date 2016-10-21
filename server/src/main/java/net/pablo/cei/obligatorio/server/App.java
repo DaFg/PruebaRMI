@@ -18,31 +18,49 @@ import net.pablo.cei.obligatorio.server.entities.User;
  */
 public class App {
 	public static void main(String[] args) {
+		// EntityManager em = null;
 		try {
+
+			// Desde aqui se implementa RMI//
+			// -----0----0--0----------0-------//
 
 			// Estas lineas son la ruta para los equipos con windows.
 
-			String path = "C:\\java.policy";
-			path = path.replace("\\", "/");
+			/*
+			 * String path = "C:\\java.policy"; path = path.replace("\\", "/");
+			 */
 
-			// System.setProperty("java.security.policy",
-			// "file://c:/java.policy");
+			// System.setProperty("java.security.policy", "file:///" +
+			// path);
+
 			// System.setSecurityManager(new SecurityManager());
 
 			// System.setProperty("java.security.policy",
 			// "file:////java.policy");
-			// LocateRegistry.createRegistry(1099);
-			// ServerImpl obj = new ServerImpl();
-			// Server stub = (Server) UnicastRemoteObject.exportObject(obj, 0);
-			// Bind the remote object's stub in the registry
-			// Registry registry = LocateRegistry.getRegistry(1099);
-			// registry.bind("server", stub);
+
+			/*
+			 * System.setProperty("java.security.policy",
+			 * "file://c:/java.policy");
+			 * 
+			 * LocateRegistry.createRegistry(1099); ServerImpl obj = new
+			 * ServerImpl(); Server stub = (Server)
+			 * UnicastRemoteObject.exportObject(obj, 0); // Bind the remote
+			 * object's stub in the registry Registry registry =
+			 * LocateRegistry.getRegistry(1099); registry.bind("server", stub);
+			 */
+
+			// ------0----0------//
+			// Hasta aqui RMI//
 
 			// JDBC
-			System.out.println("Server ready");
 			// new Memento();
 
-			// JPA todo mal
+			System.out.println("Server ready");
+
+			// Desde aqui JPA//
+			// ------0----0--//
+			System.out.println("Comienza JPA");
+
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory("jpaDS");
 			EntityManager em = (EntityManager) emf.createEntityManager();
@@ -52,10 +70,32 @@ public class App {
 			Address address = new Address("la direccion");
 			em.persist(address);
 			em.persist(user);
+
 			user.setAddress(address);
+
 			em.getTransaction().commit();
 
-		} catch (Exception e) {
+			User u = em.find(User.class, user.getId());
+			// u esta manejado por el EM
+			em.close();
+			// u deja de estar manejado por el EM
+			em = (EntityManager) emf.createEntityManager();
+			em.getTransaction().begin();
+			u = em.merge(u);
+			// u vuelve a estar manejado po un EM
+			u.setName("algo");
+			// em.persist(user);
+			em.getTransaction().commit();
+			System.out.println("Se commiteo la transaccion");
+
+			System.out.println("Finaliza JPA");
+
+			// -----0----0---//
+			// Hasta aqui JPA//
+
+		} catch (
+
+		Exception e) {
 			System.err.println("Server exception: " + e.toString());
 			e.printStackTrace();
 			System.exit(1);
