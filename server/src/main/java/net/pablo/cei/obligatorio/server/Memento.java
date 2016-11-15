@@ -18,12 +18,13 @@ public class Memento {
 			return;
 		}
 		try {
-			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/monopoly-dda2016", "fvillegas", "password");
+			connection = DriverManager.getConnection("jdbc:postgresql://127.0.0.1:5432/monopolio", "monopolio",
+					"monopolio");
 			String queryString = "SELECT name FROM users where name = ?";
 			PreparedStatement statemet = connection.prepareStatement(queryString);
 			statemet.setString(1, "asdfasdfsadf");
 			ResultSet rs = statemet.executeQuery();
-			while(rs.next()) {
+			while (rs.next()) {
 				System.out.println(rs.getString("name"));
 			}
 			connection.close();

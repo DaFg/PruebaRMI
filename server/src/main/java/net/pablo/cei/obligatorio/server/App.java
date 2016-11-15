@@ -24,6 +24,9 @@ public class App {
 		EntityManager em = null;
 		try {
 
+			// Desde aqui se implementa RMI//
+			// -----0----0--0----------0-------//
+
 			// Estas lineas son la ruta para los equipos con windows.
 			String path = "C:\\java.policy";
 			path = path.replace("\\", "/");
@@ -40,10 +43,14 @@ public class App {
 			Registry registry = LocateRegistry.getRegistry(1099);
 			registry.bind("server", stub);
 			// JDBC
-			System.out.println("Server ready");
 			// new Memento();
 
-			// JPA todo mal
+			System.out.println("Server ready");
+
+			// Desde aqui JPA//
+			// ------0----0--//
+			System.out.println("Comienza JPA");
+
 			EntityManagerFactory emf;
 			emf = Persistence.createEntityManagerFactory("jpaDS");
 			em = (EntityManager) emf.createEntityManager();
@@ -53,7 +60,21 @@ public class App {
 			Address address = new Address("la direccion");
 			em.persist(address);
 			em.persist(user);
+
 			user.setAddress(address);
+
+			em.getTransaction().commit();
+
+			User u = em.find(User.class, user.getId());
+			// u esta manejado por el EM
+			em.close();
+			// u deja de estar manejado por el EM
+			em = (EntityManager) emf.createEntityManager();
+			em.getTransaction().begin();
+			u = em.merge(u);
+			// u vuelve a estar manejado po un EM
+			u.setName("algo");
+			// em.persist(user);
 			em.getTransaction().commit();
 			User u = em.find(User.class, user.getId());
 			// u esta manejado por el EM
@@ -80,8 +101,15 @@ public class App {
 			u = (User) query.getSingleResult();
 			u.getTareas();
 			System.out.println("---->2");
+			System.out.println("Se commiteo la transaccion");
 
-		} catch (Exception e) {
+			System.out.println("Finaliza JPA");
+
+			// -----0----0---//
+			// Hasta aqui JPA//
+
+		} catch (
+		Exception e) {
 			System.err.println("Server exception: " + e.toString());
 			e.printStackTrace();
 			System.exit(1);
